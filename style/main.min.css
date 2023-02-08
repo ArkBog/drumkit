@@ -1,0 +1,1 @@
+:root{--main-color:#212529;--border:#3d5a80;--little-buttons:#ffd60a}.container{margin:auto;width:1000px;background-color:var(--main-color)}.container .button{width:156px;height:156px;background-color:var(--main-color);border:solid 1px var(--border);border-radius:10px;margin:10px}
