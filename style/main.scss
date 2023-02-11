@@ -26,5 +26,25 @@ body{
     border: solid 1px var(--border);
     border-radius: 10px;
     margin: 10px;
+    color: var(--text-color);
+    position: relative;
+
+    h1{
+      font-size: 12px;
+      // padding: 0.2rem 0 0 0;
+      text-transform: uppercase;
+      position: absolute;
+      top: 0.2rem;
+      left: 0.4rem;
+      z-index: 2;
+      color: var(--border);
+    }
+    p{
+      text-align: center;
+      font-size: 8rem;
+      opacity: 0.1;
+      color: var(--border);
+    }
+
   }
 }
