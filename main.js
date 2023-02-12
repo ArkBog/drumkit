@@ -54,7 +54,7 @@ pads.forEach((pad) =>{
   container.appendChild(button);
 
   const audio = document.createElement("audio");
-  audio.src = `/samples/${pad.name}.wav`;
+  audio.src = `https://arkbog.github.io/samples/${pad.name}.wav`;
   container.appendChild(audio);
 
   
