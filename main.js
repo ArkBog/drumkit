@@ -49,7 +49,7 @@ pads.forEach((pad) =>{
   container.appendChild(button);
 
   const audio = document.createElement("audio");
-  audio.src = `https://arkbog.github.io/drumkit/samples/${pad.name}.wav`;
+  audio.src = `https://arkbog.github.io/samples/${pad.name}.wav`;
   container.appendChild(audio);
 
   button.addEventListener("click", () =>{
