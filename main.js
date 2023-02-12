@@ -42,9 +42,14 @@ pads.forEach((pad) =>{
 
   const nameBtn = document.createElement("h1");
   nameBtn.innerText = `${pad.name}`;
-
+  const icon = document.createElement("img");
+  icon.classList.add("icon");
+  icon.src = `/img/${pad.name}.png`;
+  
+ 
 
   button.appendChild(nameBtn);
+  button.appendChild(icon);
   button.appendChild(letterBtn);
   container.appendChild(button);
 
@@ -52,7 +57,15 @@ pads.forEach((pad) =>{
   audio.src = `/samples/${pad.name}.wav`;
   container.appendChild(audio);
 
+  
+    
+  
+
   button.addEventListener("click", () =>{
+    const history = document.createElement("img");
+    history.classList.add("history");
+    history.src = `/img/${pad.name}.png`
+    display.appendChild(history);
     audio.play();
   });
 });
