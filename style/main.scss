@@ -86,12 +86,13 @@ body{
   }
   .display{
     width: 80%;
-    height: 100px;
+    height: 150px;
     background-color: var(--border);
     grid-column-start: 1;
     grid-column-end: 3;
     border: 10px solid var(--background-color);
     display: flex;
+    align-items: center;
     overflow-x: scroll;
     overflow-y: hidden;
 

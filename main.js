@@ -73,40 +73,61 @@ pads.forEach((pad) =>{
 const keyboardAudio = document.createElement("audio");
 
 document.addEventListener("keydown", (e) => {
+  const history = document.createElement("img");
+  history.classList.add("history");
+  
   switch(true){
     case (e.code === "KeyW"):
+      history.src = `/img/clap.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/clap.wav"; 
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyS"):
+      history.src = `/img/hihat.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/hihat.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyD"):
+      history.src = `/img/kick.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/kick.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyF"):
+      history.src = `/img/openhat.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/openhat.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyG"):
+      history.src = `/img/boom.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/boom.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyH"):
+      history.src = `/img/ride.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/ride.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyJ"):
+      history.src = `/img/snare.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/snare.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyK"):
+      history.src = `/img/tom.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/tom.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyL"):
+      history.src = `/img/tink.png`
+      display.appendChild(history);
       keyboardAudio.src = "/samples/tink.wav";
       keyboardAudio.play(); 
       break;
