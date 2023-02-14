@@ -102,8 +102,24 @@ body {
   border: 10px solid var(--background-color);
   display: flex;
   align-items: center;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+.container .display::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.container .display::-webkit-scrollbar-thumb {
+  background-color: var(--text-color);
+  border-radius: 10px;
+}
+
+.container .display::-webkit-scrollbar-track {
+  background: var(--border);
+  border-radius: 10px;
 }
 
 .container .display .history {
@@ -114,4 +130,30 @@ body {
 .container :nth-child(18) {
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: normal;
+    grid-auto-columns: 53px;
+  }
+  .container .button {
+    width: 156px;
+    height: 156px;
+    margin: 18px;
+  }
+  .container .button p {
+    font-size: 10rem;
+  }
+  .container .display {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    width: 90%;
+  }
+  .container :nth-child(18) {
+    grid-column-start: auto;
+    grid-column-end: auto;
+  }
 }
