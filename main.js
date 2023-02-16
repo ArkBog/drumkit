@@ -16,7 +16,7 @@ alertBlock.appendChild(alertText);
 
 const alertClose = document.createElement("div");
 alertClose.classList.add("alert-close");
-alertClose.innerText = "X"
+alertClose.innerText = "X";
 alertBlock.appendChild(alertClose);
 
 function closeAlert(){
@@ -24,6 +24,11 @@ function closeAlert(){
 };
 
 alertClose.addEventListener("click", closeAlert);
+
+const logo = document.createElement("div");
+logo.classList.add("logo");
+logo.innerText = "akai";
+container.appendChild(logo);
 
 
 const display = document.createElement("div");
@@ -36,6 +41,7 @@ const pads = [{name: "clap", letter: "W"}, {name: "hihat", letter: "S"}, {name: 
 pads.forEach((pad) =>{
   const button = document.createElement("button");
   button.classList.add("button");
+  button.setAttribute("id", `${pad.name}`);
 
   const letterBtn = document.createElement("p");
   letterBtn.innerText = `${pad.letter}`;
@@ -78,10 +84,16 @@ document.addEventListener("keydown", (e) => {
   
   switch(true){
     case (e.code === "KeyW"):
+      const clap = document.getElementById("clap");
+      clap.style.border = "solid 5px yellow";
+      clap.style.transition = "all .3s ease";
+      // clap.setAttribute("tranistion", "all .3s ease");
+      
       history.src = `/img/clap.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/clap.wav"; 
-      keyboardAudio.play(); 
+      keyboardAudio.play();
+      // 
       break;
     case (e.code === "KeyS"):
       history.src = `/img/hihat.png`
