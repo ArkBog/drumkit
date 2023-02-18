@@ -2,6 +2,7 @@
 :root {
   --main-color: #212529;
   --border: #3d5a80;
+  --active: #5f7c93;
   --little-buttons: #ffd60a;
   --background-color: #03071E;
   --text-color: #fffffc;
@@ -104,6 +105,11 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  transition: all .3s ease;
+}
+
+.container .button p:active {
+  opacity: 1;
 }
 
 .container .display {
@@ -173,7 +179,7 @@ body {
     margin: 18px;
   }
   .container .button p {
-    font-size: 10rem;
+    font-size: 8rem;
   }
   .container .display {
     grid-column-start: 1;
@@ -201,6 +207,7 @@ body {
     border: solid 1px var(--border);
   }
   to {
-    border: solid 5px var(--little-buttons);
+    border: solid 5px var(--active);
+    opacity: 1;
   }
 }

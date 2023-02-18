@@ -81,14 +81,22 @@ const keyboardAudio = document.createElement("audio");
 document.addEventListener("keydown", (e) => {
   const history = document.createElement("img");
   history.classList.add("history");
+
   
   switch(true){
     case (e.code === "KeyW"):
-      const clap = document.getElementById("clap");
-      clap.style.border = "solid 5px yellow";
-      clap.style.transition = "all .3s ease";
-      // clap.setAttribute("tranistion", "all .3s ease");
-      
+      document.getElementById("clap").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("clap").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/clap.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/clap.wav"; 
@@ -96,48 +104,144 @@ document.addEventListener("keydown", (e) => {
       // 
       break;
     case (e.code === "KeyS"):
+      document.getElementById("hihat").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("hihat").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/hihat.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/hihat.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyD"):
+      document.getElementById("kick").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("kick").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/kick.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/kick.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyF"):
+      document.getElementById("openhat").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("openhat").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/openhat.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/openhat.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyG"):
+      document.getElementById("boom").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("boom").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/boom.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/boom.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyH"):
+      document.getElementById("ride").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("ride").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/ride.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/ride.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyJ"):
+      document.getElementById("snare").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("snare").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/snare.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/snare.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyK"):
+      document.getElementById("tom").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("tom").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/tom.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/tom.wav";
       keyboardAudio.play(); 
       break;
     case (e.code === "KeyL"):
+      document.getElementById("tink").animate([
+        { border: 'solid 1px var(--border)' },
+        { border: 'solid 5px var(--active)' }
+      ], {
+        duration: 300,
+      });
+      document.getElementById("tink").querySelector("p").animate([
+        { opacity: '.1' },
+        { opacity: '1' }
+      ], {
+        duration: 300,
+      });
       history.src = `/img/tink.png`
       display.appendChild(history);
       keyboardAudio.src = "/samples/tink.wav";
