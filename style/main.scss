@@ -127,12 +127,11 @@ body{
       height: 90px;
     }
   }
-  :nth-child(18){
+}
+#tink{
     grid-column-start: 1;
     grid-column-end: 3;
-  }
 }
-
 @media screen and (min-width: 768px) {
   .container{
     grid-template-columns: 1fr 1fr 1fr;
@@ -168,10 +167,10 @@ body{
       grid-column-end: 4;
       width: 90%;
     }
-    :nth-child(18){
-      grid-column-start: auto;
-      grid-column-end: auto;
-    }
+  }
+  #tink{
+    grid-column-start: auto;
+    grid-column-end: auto;
   }
 }
 
@@ -192,5 +191,4 @@ body{
     border: solid 5px var(--active);
     opacity: 1;
   }
-  
 }
