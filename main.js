@@ -70,7 +70,7 @@ pads.forEach((pad) =>{
   button.addEventListener("click", () =>{
     const history = document.createElement("img");
     history.classList.add("history");
-    history.src = `./img/${pad.name}.png`
+    history.src = `./img/${pad.name}.png`;
     display.appendChild(history);
     audio.play();
   });
@@ -98,7 +98,7 @@ document.addEventListener("keydown", (e) => {
     ], {
       duration: 300,
     });
-    history.src = `./img/${padValue}.png`
+    history.src = `./img/${padValue}.png`;
     display.appendChild(history);
     keyboardAudio.src = `./samples/${padValue}.wav`; 
     keyboardAudio.play();
