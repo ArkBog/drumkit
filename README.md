@@ -60,7 +60,66 @@ alertClose.innerText = "X";
 alertBlock.appendChild(alertClose);
 ```
 
-The alarm is created in these lines. Two div's have been created because a flexbox has been used to split the alert into two parts.
+The alert is created in these lines. Two div's have been created because a flexbox has been used to split the alert into two parts.
+
+```
+function closeAlert() {
+  alertBlock.style.display = "none";
+}
+
+alertClose.addEventListener("click", closeAlert);
+```
+In these lines there is a function to close an alert and a listener function that runs after clicking an "X".
+
+```
+const pads = [
+  { name: "clap", letter: "W" },
+  { name: "hihat", letter: "S" },
+  { name: "kick", letter: "D" },
+  { name: "openhat", letter: "F" },
+  { name: "boom", letter: "G" },
+  { name: "ride", letter: "H" },
+  { name: "snare", letter: "J" },
+  { name: "tom", letter: "K" },
+  { name: "tink", letter: "L" },
+];
+```
+This array contains objects that have a drum name and an associated key.
+
+```
+pads.forEach((pad) => {
+  const button = document.createElement("button");
+  button.classList.add("button");
+  button.setAttribute("id", `${pad.name}`);
+
+  const letterBtn = document.createElement("p");
+  letterBtn.innerText = `${pad.letter}`;
+
+  const nameBtn = document.createElement("h1");
+  nameBtn.innerText = `${pad.name}`;
+  const icon = document.createElement("img");
+  icon.classList.add("icon");
+  icon.src = `./img/${pad.name}.png`;
+
+  button.appendChild(nameBtn);
+  button.appendChild(icon);
+  button.appendChild(letterBtn);
+  container.appendChild(button);
+
+  const audio = document.createElement("audio");
+  audio.src = `./samples/${pad.name}.wav`;
+  container.appendChild(audio);
+
+  button.addEventListener("click", () => {
+    const history = document.createElement("img");
+    history.classList.add("history");
+    history.src = `./img/${pad.name}.png`;
+    display.appendChild(history);
+    audio.play();
+  });
+});
+```
+In this forEach are created a buttons to play a sound by mouse. Firstly are created a buttons with class button and id responds to pad.name.
 
 
 
