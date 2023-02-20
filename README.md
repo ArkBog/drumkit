@@ -43,7 +43,7 @@ The top display shows a history of key presses. Application is responsive to 375
 
 ## Usage
 
-`wconst alertBlock = document.createElement("div");
+const alertBlock = document.createElement("div");
 alertBlock.classList.add("alert");
 app.appendChild(alertBlock);
 
@@ -56,7 +56,7 @@ alertBlock.appendChild(alertText);
 const alertClose = document.createElement("div");
 alertClose.classList.add("alert-close");
 alertClose.innerText = "X";
-alertBlock.appendChild(alertClose);`
+alertBlock.appendChild(alertClose);
 
 The alarm is created in these lines. Two div's have been created because a flexbox has been used to split the alert into two parts.
 
