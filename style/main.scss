@@ -1,39 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
 :root {
   --main-color: #212529;
   --border: #3d5a80;
   --active: #5f7c93;
   --little-buttons: #ffd60a;
-  --background-color: #03071E;
+  --background-color: #03071e;
   --text-color: #fffffc;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family:'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-.alert{
+.alert {
   width: 100%;
   background-color: var(--little-buttons);
   color: var(--main-color);
   display: flex;
   justify-content: space-between;
-  padding: .6rem;
+  padding: 0.6rem;
 
-  .alert-text{
-  font-size: 1rem;
-  text-align: justify;
-  padding: 1rem;
-  letter-spacing: .1rem;
+  .alert-text {
+    font-size: 1rem;
+    text-align: justify;
+    padding: 1rem;
+    letter-spacing: 0.1rem;
   }
-  .alert-close{
+  .alert-close {
     font-size: 3rem;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
@@ -48,7 +48,7 @@ body{
   background-color: var(--main-color);
   padding-top: 1rem;
   position: relative;
-  .logo{
+  .logo {
     display: none;
   }
   .button {
@@ -60,45 +60,44 @@ body{
     color: var(--text-color);
     position: relative;
     margin: 10px;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
-    &:active{
-      animation: push .3s ease;
+    &:active {
+      animation: push 0.3s ease;
     }
-    h1{
+    h1 {
       font-size: 12px;
       text-transform: uppercase;
       position: absolute;
-      top: .2rem;
-      left: .4rem;
+      top: 0.2rem;
+      left: 0.4rem;
       z-index: 2;
       color: var(--border);
     }
-    .icon{
+    .icon {
       width: 20px;
       height: 20px;
       position: absolute;
-      right: .4rem;
-      top: .2rem;
-      opacity: .4;
+      right: 0.4rem;
+      top: 0.2rem;
+      opacity: 0.4;
     }
-    p{
+    p {
       text-align: center;
       font-size: 6rem;
-      opacity: .1;
+      opacity: 0.1;
       color: var(--border);
       width: 100%;
       height: 100%;
       overflow: hidden;
-      transition: all .3s ease;
-      &:active{
+      transition: all 0.3s ease;
+      &:active {
         opacity: 1;
       }
     }
-
   }
-  .display{
+  .display {
     width: 80%;
     height: 150px;
     background-color: var(--border);
@@ -122,18 +121,18 @@ body{
       background: var(--border);
       border-radius: 10px;
     }
-    .history{
+    .history {
       width: 90px;
       height: 90px;
     }
   }
 }
-#tink{
-    grid-column-start: 1;
-    grid-column-end: 3;
+#tink {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 @media screen and (min-width: 768px) {
-  .container{
+  .container {
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-items: normal;
@@ -141,7 +140,7 @@ body{
     width: 1000px;
     margin: auto;
     padding: 0;
-    .logo{
+    .logo {
       display: block;
       grid-column-start: 1;
       grid-column-end: 4;
@@ -152,32 +151,31 @@ body{
       text-transform: uppercase;
       letter-spacing: 0.3rem;
       justify-self: end;
-
     }
-    .button{
+    .button {
       width: 156px;
       height: 156px;
       margin: 18px;
-      p{
+      p {
         font-size: 8rem;
       }
     }
-    .display{
+    .display {
       grid-column-start: 1;
       grid-column-end: 4;
       width: 90%;
     }
   }
-  #tink{
+  #tink {
     grid-column-start: auto;
     grid-column-end: auto;
   }
 }
 
-@media screen and (min-height: 1000px){
-  .container{
+@media screen and (min-height: 1000px) {
+  .container {
     height: 100vh;
-    .logo{
+    .logo {
       font-size: 3rem;
       padding: 1rem 0 0rem 0;
     }
