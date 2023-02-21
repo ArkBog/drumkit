@@ -57,7 +57,7 @@ pads.forEach((pad) => {
   nameBtn.innerText = `${pad.name}`;
   const icon = document.createElement("img");
   icon.classList.add("icon");
-  icon.src = `./img/${pad.name}.png`;
+  icon.src = `./img/icons/${pad.name}.png`;
 
   button.appendChild(nameBtn);
   button.appendChild(icon);

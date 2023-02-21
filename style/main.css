@@ -115,7 +115,7 @@ body {
 .container .display {
   width: 80%;
   height: 150px;
-  background-color: var(--border);
+  background-color: var(--text-color);
   grid-column-start: 1;
   grid-column-end: 3;
   border: 10px solid var(--background-color);
