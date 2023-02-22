@@ -1,5 +1,42 @@
 const app = document.querySelector("#app");
 
+const buttonModeSwitch = document.createElement("label");
+buttonModeSwitch.classList.add("buttonModeSwitch");
+
+const buttonModeSlider = document.createElement("span");
+buttonModeSlider.classList.add("buttonModeSlider");
+
+const buttonMode = document.createElement("input");
+buttonMode.setAttribute("type", "checkbox");
+buttonMode.classList.add("buttonMode");
+
+buttonModeSwitch.appendChild(buttonModeSlider);
+buttonModeSwitch.appendChild(buttonMode);
+app.appendChild(buttonModeSwitch);
+
+
+  function lightMode(){
+    const body = document.querySelector(":root");
+    body.style.setProperty("--main-color", "#fffffc");
+    body.style.setProperty("--background-color", "#ffd60a");
+    body.style.setProperty("--text-color", "#fffffc");
+  }
+  function darkMode(){
+    const body = document.querySelector(":root");
+    body.style.setProperty("--main-color", "#212529");
+    body.style.setProperty("--background-color", "#03071e");
+    body.style.setProperty("--text-color", "#fffffc");
+  }
+
+buttonMode.addEventListener("change", () => {
+  if (buttonMode.checked){
+    lightMode()
+  }
+  else (
+    darkMode()
+  )
+});
+
 const container = document.createElement("div");
 container.classList.add("container");
 
@@ -135,3 +172,4 @@ document.addEventListener("keydown", (e) => {
 });
 
 app.appendChild(container);
+

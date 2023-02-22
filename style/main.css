@@ -132,7 +132,7 @@ body {
 }
 
 .container .display::-webkit-scrollbar-thumb {
-  background-color: var(--text-color);
+  background-color: var(--active);
   border-radius: 10px;
 }
 
