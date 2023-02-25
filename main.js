@@ -55,12 +55,7 @@ buttonModeSwitch.appendChild(buttonMode);
 buttonModeSwitch.appendChild(buttonModeSlider);
 container.appendChild(buttonModeSwitch);
 
-const lightModeOn = localStorage.getItem("lightModeOn");
 
-if (lightModeOn === true){
-  lightMode();
-  buttonMode.setAttribute("checked");
-}
 
 function lightMode() {
   const body = document.querySelector(":root");
@@ -79,11 +74,19 @@ function darkMode() {
   lightModeOn = localStorage.setItem("lightModeOn", "false");
 }
 
+
 buttonMode.addEventListener("change", () => {
   if (buttonMode.checked) {
     lightMode();
   } else darkMode();
 });
+
+let lightModeOn = localStorage.getItem("lightModeOn");
+console.log(lightModeOn);
+
+if (lightModeOn == true){
+  lightMode();
+};
 
 const logo = document.createElement("div");
 logo.classList.add("logo");
