@@ -72,6 +72,53 @@ alertClose.addEventListener("click", closeAlert);
 In these lines there is a function to close an alert and a listener function that runs after clicking an "X".
 
 ```
+const buttonModeSwitch = document.createElement("label");
+buttonModeSwitch.classList.add("switch");
+
+const buttonModeSlider = document.createElement("span");
+buttonModeSlider.classList.add("slider");
+
+const btnDark = document.createElement("i");
+const btnLight = document.createElement("i");
+btnDark.classList.add("fa-solid");
+btnDark.classList.add("fa-moon");
+btnLight.classList.add("fa-solid");
+btnLight.classList.add("fa-sun");
+buttonModeSlider.appendChild(btnDark);
+buttonModeSlider.appendChild(btnLight);
+
+const buttonMode = document.createElement("input");
+buttonMode.setAttribute("type", "checkbox");
+
+buttonModeSwitch.appendChild(buttonMode);
+buttonModeSwitch.appendChild(buttonModeSlider);
+container.appendChild(buttonModeSwitch);
+```
+In this block of code are created the button to toggle a display mode. This button has a label, checkbox and span. The span is spilit to two elements "i" of flexbox. The "i" elements have a class from Fontawesome.
+
+```
+function lightMode() {
+  const body = document.querySelector(":root");
+  body.style.setProperty("--main-color", "#fffffc");
+  body.style.setProperty("--background-color", "#ffd60a");
+  body.style.setProperty("--text-color", "#212529");
+}
+function darkMode() {
+  const body = document.querySelector(":root");
+  body.style.setProperty("--main-color", "#212529");
+  body.style.setProperty("--background-color", "#03071e");
+  body.style.setProperty("--text-color", "#fffffc");
+}
+
+buttonMode.addEventListener("change", () => {
+  if (buttonMode.checked) {
+    lightMode();
+  } else darkMode();
+});
+```
+This block of code are creates functions for dark and light mode. Functions gets a :root and change colours as appropriate. In the next steps, a listener was added that reacts to a checkbox status change.
+
+```
 const pads = [
   { name: "clap", letter: "W" },
   { name: "hihat", letter: "S" },

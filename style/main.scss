@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
+@import url("./fontawesome/all.css");
 :root {
   --main-color: #212529;
   --border: #3d5a80;
@@ -49,7 +50,64 @@ body {
   padding-top: 1rem;
   position: relative;
   .logo {
-    display: none;
+    display: block;
+    margin-right: 20%;
+    padding: 0.2rem 0 0.2rem 0;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    justify-self: end;
+  }
+  .switch {
+    margin-left: 20%;
+    justify-self: start;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+    // background-color: #03071e;
+    // border: 1px solid var(--border);
+    border-radius: 1rem;
+    input {
+      all: unset;
+    }
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    border-radius: 1rem;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    i {
+      font-size: 1.2rem;
+      padding: 5px;
+    }
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 0px;
+    bottom: 5px;
+    border: 2px solid var(--active);
+    border-radius: 1rem;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  input:checked + .slider:before {
+    -webkit-transform: translateX(70px);
+    -ms-transform: translateX(70px);
+    transform: translateX(70px);
   }
   .button {
     width: 100px;
@@ -141,16 +199,12 @@ body {
     margin: auto;
     padding: 0;
     .logo {
-      display: block;
-      grid-column-start: 1;
+      grid-column-start: 3;
       grid-column-end: 4;
-      margin-right: 5%;
-      padding: 0.2rem 0 0.2rem 0;
-      font-size: 1.2rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.3rem;
-      justify-self: end;
+    }
+    .switch {
+      grid-column-start: 1;
+      grid-column-end: 2;
     }
     .button {
       width: 156px;
