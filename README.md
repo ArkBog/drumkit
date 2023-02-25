@@ -97,17 +97,28 @@ container.appendChild(buttonModeSwitch);
 In this block of code are created the button to toggle a display mode. This button has a label, checkbox and span. The span is spilit to two elements "i" of flexbox. The "i" elements have a class from Fontawesome.
 
 ```
+const lightModeOn = localStorage.getItem("lightModeOn");
+
+if (lightModeOn === true){
+  lightMode();
+  buttonMode.setAttribute("checked");
+}
+
 function lightMode() {
   const body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#fffffc");
   body.style.setProperty("--background-color", "#ffd60a");
   body.style.setProperty("--text-color", "#212529");
+  body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
+  lightModeOn = localStorage.setItem("lightModeOn", "true");
 }
 function darkMode() {
   const body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#212529");
   body.style.setProperty("--background-color", "#03071e");
   body.style.setProperty("--text-color", "#fffffc");
+  body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
+  lightModeOn = localStorage.setItem("lightModeOn", "false");
 }
 
 buttonMode.addEventListener("change", () => {
@@ -116,7 +127,7 @@ buttonMode.addEventListener("change", () => {
   } else darkMode();
 });
 ```
-This block of code are creates functions for dark and light mode. Functions gets a :root and change colours as appropriate. In the next steps, a listener was added that reacts to a checkbox status change.
+This block of code are creates functions for dark and light mode. Functions gets a :root and change colours as appropriate. In the next steps, a listener was added that reacts to a checkbox status change. In addition, changes are saved to local storage.
 
 ```
 const pads = [

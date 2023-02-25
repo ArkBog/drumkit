@@ -1,5 +1,14 @@
 const app = document.querySelector("#app");
 
+const docTitle = document.title;
+
+window.addEventListener("blur", () =>{
+  document.title = "Come back ♫"
+});
+window.addEventListener("focus", () =>{
+  document.title = docTitle;
+});
+
 const container = document.createElement("div");
 container.classList.add("container");
 
@@ -46,17 +55,28 @@ buttonModeSwitch.appendChild(buttonMode);
 buttonModeSwitch.appendChild(buttonModeSlider);
 container.appendChild(buttonModeSwitch);
 
+const lightModeOn = localStorage.getItem("lightModeOn");
+
+if (lightModeOn === true){
+  lightMode();
+  buttonMode.setAttribute("checked");
+}
+
 function lightMode() {
   const body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#fffffc");
   body.style.setProperty("--background-color", "#ffd60a");
   body.style.setProperty("--text-color", "#212529");
+  body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
+  lightModeOn = localStorage.setItem("lightModeOn", "true");
 }
 function darkMode() {
   const body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#212529");
   body.style.setProperty("--background-color", "#03071e");
   body.style.setProperty("--text-color", "#fffffc");
+  body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
+  lightModeOn = localStorage.setItem("lightModeOn", "false");
 }
 
 buttonMode.addEventListener("change", () => {
