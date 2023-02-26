@@ -78,21 +78,20 @@ function darkMode() {
 }
 
 if (lightModeOn === true){
-  buttonMode.checked = true;
+  buttonMode.checked;
   lightMode();
 }
 else {
-  buttonMode.checked = false;
   darkMode();
 }
 
 buttonMode.addEventListener("change", () => {
   if (buttonMode.checked) {
     lightMode();
-  } else darkMode();
+  } else {darkMode();}
 });
 
-lightMode();
+// lightMode();
 
 
 const logo = document.createElement("div");
