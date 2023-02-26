@@ -55,11 +55,6 @@ buttonModeSwitch.appendChild(buttonMode);
 buttonModeSwitch.appendChild(buttonModeSlider);
 container.appendChild(buttonModeSwitch);
 
-let lightModeOn = localStorage.getItem("lightModeOn");
-console.log(lightModeOn);
-
-
-
 function lightMode() {
   const body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#fffffc");
@@ -76,6 +71,10 @@ function darkMode() {
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   lightModeOn = localStorage.setItem("lightModeOn", "false");
 }
+
+let lightModeOn = localStorage.getItem("lightModeOn");
+console.log(lightModeOn);
+
 
 if (lightModeOn === true){
   buttonMode.checked;
