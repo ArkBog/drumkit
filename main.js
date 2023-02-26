@@ -78,7 +78,6 @@ function darkMode() {
 let lightModeOn = localStorage.getItem("lightModeOn");
 
 if (lightModeOn == true){
-  buttonModeSwitch.querySelector("input").checked;
   lightMode();
 }
 else if (lightModeOn == false){
