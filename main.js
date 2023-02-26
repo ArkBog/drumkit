@@ -90,7 +90,6 @@ buttonMode.addEventListener("change", () => {
   } else {darkMode();}
 });
 
-// lightMode();
 
 
 const logo = document.createElement("div");
