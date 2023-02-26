@@ -33,7 +33,7 @@ function closeAlert() {
 
 alertClose.addEventListener("click", closeAlert);
 
-const buttonModeSwitch = document.createElement("label");
+let buttonModeSwitch = document.createElement("label");
 buttonModeSwitch.classList.add("switch");
 
 const buttonModeSlider = document.createElement("span");
