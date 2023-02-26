@@ -75,50 +75,26 @@ body {
   width: 100px;
   height: 34px;
   border-radius: 1rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
 .container .switch input {
   all: unset;
 }
 
-.container .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100px;
-  border-radius: 1rem;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-}
-
-.container .slider i {
+.container .switch i {
   font-size: 1.2rem;
-  padding: 5px;
+  width: 24px;
+  height: 24px;
+  margin: auto;
+  text-align: center;
 }
 
-.container .slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 0px;
-  bottom: 5px;
+.container .active {
   border: 2px solid var(--active);
-  border-radius: 1rem;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.container input:checked + .slider:before {
-  -webkit-transform: translateX(70px);
-  -ms-transform: translateX(70px);
-  transform: translateX(70px);
+  border-radius: 10px;
 }
 
 .container .button {

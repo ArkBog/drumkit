@@ -36,23 +36,19 @@ alertClose.addEventListener("click", closeAlert);
 const buttonModeSwitch = document.createElement("label");
 buttonModeSwitch.classList.add("switch");
 
-const buttonModeSlider = document.createElement("span");
-buttonModeSlider.classList.add("slider");
-
 const btnDark = document.createElement("i");
 const btnLight = document.createElement("i");
 btnDark.classList.add("fa-solid");
 btnDark.classList.add("fa-moon");
 btnLight.classList.add("fa-solid");
 btnLight.classList.add("fa-sun");
-buttonModeSlider.appendChild(btnDark);
-buttonModeSlider.appendChild(btnLight);
+buttonModeSwitch.appendChild(btnDark);
+buttonModeSwitch.appendChild(btnLight);
 
 const buttonMode = document.createElement("input");
 buttonMode.setAttribute("type", "checkbox");
 
 buttonModeSwitch.appendChild(buttonMode);
-buttonModeSwitch.appendChild(buttonModeSlider);
 container.appendChild(buttonModeSwitch);
 
 if (localStorage.getItem("mode") == "light"){
@@ -69,6 +65,8 @@ function lightMode() {
   body.style.setProperty("--text-color", "#212529");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "light");
+  btnDark.classList.remove("active");
+  btnLight.classList.add("active");
 }
 function darkMode() {
   let body = document.querySelector(":root");
@@ -77,11 +75,15 @@ function darkMode() {
   body.style.setProperty("--text-color", "#fffffc");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "dark");
+  
+  btnLight.classList.remove("active");
+  btnDark.classList.add("active");
 }
 
 buttonMode.addEventListener("change", () => {
   if (buttonMode.checked) {
     lightMode();
+    
   } else {
     darkMode();
   }
