@@ -33,7 +33,7 @@ function closeAlert() {
 
 alertClose.addEventListener("click", closeAlert);
 
-let buttonModeSwitch = document.createElement("label");
+const buttonModeSwitch = document.createElement("label");
 buttonModeSwitch.classList.add("switch");
 
 const buttonModeSlider = document.createElement("span");
@@ -48,48 +48,44 @@ btnLight.classList.add("fa-sun");
 buttonModeSlider.appendChild(btnDark);
 buttonModeSlider.appendChild(btnLight);
 
-let buttonMode = document.createElement("input");
+const buttonMode = document.createElement("input");
 buttonMode.setAttribute("type", "checkbox");
 
 buttonModeSwitch.appendChild(buttonMode);
 buttonModeSwitch.appendChild(buttonModeSlider);
 container.appendChild(buttonModeSwitch);
 
-
+if (localStorage.getItem("mode") == "light"){
+  lightMode();
+}
+else {
+  darkMode();
+}
 
 function lightMode() {
-  const body = document.querySelector(":root");
+  let body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#fffffc");
   body.style.setProperty("--background-color", "#ffd60a");
   body.style.setProperty("--text-color", "#212529");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
-  lightModeOn = localStorage.setItem("lightModeOn", "true");
+  localStorage.setItem("mode", "light");
 }
 function darkMode() {
-  const body = document.querySelector(":root");
+  let body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#212529");
   body.style.setProperty("--background-color", "#03071e");
   body.style.setProperty("--text-color", "#fffffc");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
-  lightModeOn = localStorage.setItem("lightModeOn", "false");
-}
-
-
-let lightModeOn = localStorage.getItem("lightModeOn");
-
-if (lightModeOn == true){
-  lightMode();
-}
-else if (lightModeOn == false){
-  darkMode();
+  localStorage.setItem("mode", "dark");
 }
 
 buttonMode.addEventListener("change", () => {
   if (buttonMode.checked) {
     lightMode();
-  } else {darkMode();}
+  } else {
+    darkMode();
+  }
 });
-
 
 
 
