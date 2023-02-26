@@ -55,6 +55,8 @@ buttonModeSwitch.appendChild(buttonMode);
 buttonModeSwitch.appendChild(buttonModeSlider);
 container.appendChild(buttonModeSwitch);
 
+
+
 function lightMode() {
   const body = document.querySelector(":root");
   body.style.setProperty("--main-color", "#fffffc");
@@ -72,15 +74,14 @@ function darkMode() {
   lightModeOn = localStorage.setItem("lightModeOn", "false");
 }
 
+
 let lightModeOn = localStorage.getItem("lightModeOn");
-console.log(lightModeOn);
 
-
-if (lightModeOn === true){
-  buttonMode.checked;
+if (lightModeOn == true){
+  buttonModeSwitch.querySelector("input").checked;
   lightMode();
 }
-else {
+else if (lightModeOn == false){
   darkMode();
 }
 
@@ -89,6 +90,7 @@ buttonMode.addEventListener("change", () => {
     lightMode();
   } else {darkMode();}
 });
+
 
 
 
