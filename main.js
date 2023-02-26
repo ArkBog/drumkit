@@ -84,8 +84,8 @@ buttonMode.addEventListener("change", () => {
 let lightModeOn = localStorage.getItem("lightModeOn");
 console.log(lightModeOn);
 
-if (lightModeOn == true){
-  lightMode();
+if (lightModeOn === true){
+  buttonMode.checked = true;
 };
 
 const logo = document.createElement("div");
