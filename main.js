@@ -58,14 +58,7 @@ container.appendChild(buttonModeSwitch);
 let lightModeOn = localStorage.getItem("lightModeOn");
 console.log(lightModeOn);
 
-if (lightModeOn === true){
-  buttonMode.checked = true;
-  lightMode();
-}
-else {
-  buttonMode.checked = false;
-  darkMode();
-}
+
 
 function lightMode() {
   const body = document.querySelector(":root");
@@ -84,6 +77,14 @@ function darkMode() {
   lightModeOn = localStorage.setItem("lightModeOn", "false");
 }
 
+if (lightModeOn === true){
+  buttonMode.checked = true;
+  lightMode();
+}
+else {
+  buttonMode.checked = false;
+  darkMode();
+}
 
 buttonMode.addEventListener("change", () => {
   if (buttonMode.checked) {
