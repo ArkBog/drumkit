@@ -61,7 +61,11 @@ console.log(lightModeOn);
 if (lightModeOn === true){
   buttonMode.checked = true;
   lightMode();
-};
+}
+else {
+  buttonMode.checked = false;
+  darkMode();
+}
 
 function lightMode() {
   const body = document.querySelector(":root");
