@@ -85,7 +85,11 @@ let lightModeOn = localStorage.getItem("lightModeOn");
 console.log(lightModeOn);
 
 if (lightModeOn === true){
-  lightMode ();
+  buttonMode.checked = true;
+  const body = document.querySelector(":root");
+  body.style.setProperty("--main-color", "#fffffc");
+  body.style.setProperty("--background-color", "#ffd60a");
+  body.style.setProperty("--text-color", "#212529");
 };
 
 const logo = document.createElement("div");
