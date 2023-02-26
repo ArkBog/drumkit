@@ -48,7 +48,7 @@ btnLight.classList.add("fa-sun");
 buttonModeSlider.appendChild(btnDark);
 buttonModeSlider.appendChild(btnLight);
 
-const buttonMode = document.createElement("input");
+let buttonMode = document.createElement("input");
 buttonMode.setAttribute("type", "checkbox");
 
 buttonModeSwitch.appendChild(buttonMode);
