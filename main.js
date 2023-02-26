@@ -85,7 +85,7 @@ let lightModeOn = localStorage.getItem("lightModeOn");
 console.log(lightModeOn);
 
 if (lightModeOn === true){
-  buttonMode.checked = true;
+  lightMode();
 };
 
 const logo = document.createElement("div");
