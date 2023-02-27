@@ -2,10 +2,10 @@ const app = document.querySelector("#app");
 
 const docTitle = document.title;
 
-window.addEventListener("blur", () =>{
-  document.title = "Come back ♫"
+window.addEventListener("blur", () => {
+  document.title = "Come back ♫";
 });
-window.addEventListener("focus", () =>{
+window.addEventListener("focus", () => {
   document.title = docTitle;
 });
 
@@ -51,10 +51,10 @@ buttonMode.setAttribute("type", "checkbox");
 buttonModeSwitch.appendChild(buttonMode);
 container.appendChild(buttonModeSwitch);
 
-if (localStorage.getItem("mode") == "light"){
+if (localStorage.getItem("mode") === "light") {
   lightMode();
-}
-else {
+  buttonModeSwitch.querySelector("input").checked = true;
+} else {
   darkMode();
 }
 
@@ -63,6 +63,7 @@ function lightMode() {
   body.style.setProperty("--main-color", "#fffffc");
   body.style.setProperty("--background-color", "#ffd60a");
   body.style.setProperty("--text-color", "#212529");
+  body.style.setProperty("--alert-color", "#212529");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "light");
   btnDark.classList.remove("active");
@@ -73,9 +74,10 @@ function darkMode() {
   body.style.setProperty("--main-color", "#212529");
   body.style.setProperty("--background-color", "#03071e");
   body.style.setProperty("--text-color", "#fffffc");
+  body.style.setProperty("--alert-color", "#ffd60a");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "dark");
-  
+
   btnLight.classList.remove("active");
   btnDark.classList.add("active");
 }
@@ -83,13 +85,10 @@ function darkMode() {
 buttonMode.addEventListener("change", () => {
   if (buttonMode.checked) {
     lightMode();
-    
   } else {
     darkMode();
   }
 });
-
-
 
 const logo = document.createElement("div");
 logo.classList.add("logo");

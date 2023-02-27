@@ -4,9 +4,10 @@
   --main-color: #212529;
   --border: #3d5a80;
   --active: #5f7c93;
-  --little-buttons: #ffd60a;
+  --alert-color: #ffd60a;
   --background-color: #03071e;
   --text-color: #fffffc;
+  --display-color: #fffffc;
 }
 
 * {
@@ -23,7 +24,7 @@ body {
 
 .alert {
   width: 100%;
-  background-color: var(--little-buttons);
+  background-color: var(--alert-color);
   color: var(--main-color);
   display: flex;
   justify-content: space-between;
@@ -75,6 +76,7 @@ body {
   width: 100px;
   height: 34px;
   border-radius: 1rem;
+  cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -153,7 +155,7 @@ body {
 .container .display {
   width: 80%;
   height: 150px;
-  background-color: var(--text-color);
+  background-color: var(--display-color);
   grid-column-start: 1;
   grid-column-end: 3;
   border: 10px solid var(--background-color);
