@@ -32,8 +32,11 @@ The user can play a sound by clicking a button or pressing a key on the keyboard
 - "H" - Ride,
 - "J" - Snare,
 - "K" - Tom,
-- "L" - Tink.
-The top display shows a history of key presses. Application is responsive to 375px.
+- "L" - Tink,
+- "Backspace" - Undo,
+- "Delete" - Clear all.
+
+The top display shows a history of key presses. The application saves the history of plays. Application is responsive to 375px. The application has two modes - dark and light. The default is dark mode.
 ![Example screenshot](./screenshots/1.png)
 
 
@@ -43,6 +46,17 @@ The top display shows a history of key presses. Application is responsive to 375
 
 ## Usage
 
+```
+const docTitle = document.title;
+
+window.addEventListener("blur", () => {
+  document.title = "Comeback ♫";
+});
+window.addEventListener("focus", () => {
+  document.title = docTitle;
+});
+```
+The application checks that the user is in a tab. If the user exits, the title of the tab will change.
 ```
 const alertBlock = document.createElement("div");
 alertBlock.classList.add("alert");
@@ -90,7 +104,7 @@ buttonMode.setAttribute("type", "checkbox");
 buttonModeSwitch.appendChild(buttonMode);
 container.appendChild(buttonModeSwitch);
 ```
-In this block of code are created the button to toggle a display mode. This button has a label and checkbox. The "i" elements have a class from Fontawesome.
+In this block of code are created the button to toggle a display mode. This button has a label and checkbox. The "i" elements have a classes from Fontawesome.
 
 ```
 if (localStorage.getItem("mode") === "light") {
@@ -119,7 +133,6 @@ function darkMode() {
   body.style.setProperty("--alert-color", "#ffd60a");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "dark");
-  
   btnLight.classList.remove("active");
   btnDark.classList.add("active");
 }
@@ -127,14 +140,13 @@ function darkMode() {
 buttonMode.addEventListener("change", () => {
   if (buttonMode.checked) {
     lightMode();
-    
   } else {
     darkMode();
   }
 });
 
 ```
-This block of code are creates functions for dark and light mode. Functions gets a :root and change colours as appropriate. In the next steps, a listener was added that reacts to a checkbox status change. In addition, changes are saved to local storage.
+This block of code are creates functions for dark and light mode. First, the function gets a local storage and runs a right mode, also setting a checkbox to correct status. Next functions gets a :root and change colours as appropriate. Functions also sets a right preferences in local storage and changing display of buttons. In the next steps, a listener was added that reacts to a checkbox status change.
 
 ```
 const pads = [
@@ -180,11 +192,13 @@ pads.forEach((pad) => {
     history.classList.add("history");
     history.src = `./img/${pad.name}.png`;
     display.appendChild(history);
+    save.push(`${pad.name}`);
+    localStorage.setItem("pad", JSON.stringify(save));
     audio.play();
   });
 });
 ```
-In this forEach are created a buttons to play a sound by mouse. Firstly are created a buttons with class button and id responds to pad.name. The next lines create an audio tag for each button. The next step are to add a listener to each button. In callback is created an img that represents a pad icon. The last line is a function to play an audio.
+In this forEach are created a buttons to play a sound by mouse. Firstly are created a buttons with class button and id responds to pad.name. The next few lines create an audio tag for each button and set the source using a pad name. The next step are to add a listener to each button. In callback is created an img that represents a pad icon, which is append to display. The next line updates a localstorage. The last line is a function to play an audio.
 
 ```
 const keyboardAudio = document.createElement("audio");
@@ -210,6 +224,8 @@ document.addEventListener("keydown", (e) => {
     history.src = `./img/${padValue}.png`;
     display.appendChild(history);
     keyboardAudio.src = `./samples/${padValue}.wav`;
+    save.push(`${padValue}`);
+    localStorage.setItem("pad", JSON.stringify(save));
     keyboardAudio.play();
   }
 
@@ -241,16 +257,103 @@ document.addEventListener("keydown", (e) => {
     case e.code === "KeyL":
       pushKey("tink");
       break;
+    case e.code === "Backspace":
+      undo();
+      historyUndo.animate(
+        [
+          { backgroundColor: "var(--alert-color)" },
+          { backgroundColor: "#fffffc" },
+        ],
+        {
+          duration: 300,
+        }
+      );
+      break;
+    case e.code === "Delete":
+      clearAll();
+      historyClearAll.animate(
+        [
+          { backgroundColor: "var(--alert-color)" },
+          { backgroundColor: "#fffffc" },
+        ],
+        {
+          duration: 300,
+        }
+      );
+      break;
   }
 });
 ```
-This block of code is for the creation of a function which will play a sound from the keyboard. The first step is to create an audio tag. The next step is to add a listener to the audio tag. The listener gets an event (e). In the callback a img is created which represents an icon pad. In the next lines we create an animation for buttons after pressing a key. The next step is to set an audio source and play a sound using the play() function. The next code block is a switch. The switch has a cases that responds when a key is pressed
+This block of code is for the creation of a function which will play a sound from the keyboard. The first step is to create an audio tag. The next step is to add a listener to the audio tag. The listener gets an event (e). In the callback a img is created which represents an icon pad. In the next lines we create an animation for buttons after pressing a key. The next step is to set an audio source and play a sound using the play() function. The next code block is a switch. The switch has a cases that responds when a key is pressed. Cases "backspace" and "delete" are responsible for cleaning a plays history.
 
+```
+let save = [];
+```
+This array saves a history of plays.
+```
+save.push(`${pad.name}`);
+```
+Functions responsible for plays, has a this line. This command add a pad name to let "save", after the button was pressed.
 
+```
+localStorage.setItem("pad", JSON.stringify(save));
+```
+Functions also has a this line. This line change array "save" to string and updates a local storage.
 
+```
+let localSave = localStorage.getItem("pad");
+let newLocalSave = JSON.parse(localSave);
+
+if (newLocalSave !== null) {
+  newLocalSave.forEach((element) => {
+    const localHistory = document.createElement("img");
+    localHistory.classList.add("history");
+    localHistory.src = `./img/${element}.png`;
+    display.appendChild(localHistory);
+    save.push(`${element}`);
+  });
+}
+```
+Local storage are download to let "localSave". In the next step, "localSave" is changing for array. This are possible to makes a if loop. In this loop are creating a "img", which next is display. The last line updates a let "save".
+
+```
+function undo() {
+  const lastChild = document.querySelectorAll(".history");
+  const arrLastChild = Array.from(lastChild);
+  arrLastChild.pop();
+  save.pop();
+  localStorage.setItem("pad", JSON.stringify(save));
+  while (display.hasChildNodes()) {
+    display.removeChild(display.firstChild);
+  }
+  arrLastChild.forEach((element) => {
+    const currentHistory = document.createElement("img");
+    currentHistory.setAttribute("src", `${element.currentSrc}`);
+    currentHistory.classList.add("history");
+    display.appendChild(currentHistory);
+  });
+}
+historyUndo.addEventListener("click", undo);
+```
+This function is responsible for undoing. At the start, the function gets all elements with class "history;". Next, elements are changed from node to array and the last elements are deleted. Also the last element is delete in array "save". The next step is to update a local storage. The while loop deletes a current display of history. The forEach loop displays a new history, without the last, deleted element.
+
+```
+function clearAll() {
+  const allHistory = document.querySelectorAll(".history");
+  let arrAllHistory = Array.from(allHistory);
+  arrAllHistory = [];
+  save = [];
+  localStorage.setItem("pad", JSON.stringify(save));
+  while (display.hasChildNodes()) {
+    display.removeChild(display.firstChild);
+  }
+}
+historyClearAll.addEventListener("click", clearAll);
+```
+The clearAll() is similar to undo(). The difference is, that this function removes all elements from arrays.
 
 ## Project Status
-Project is: complete.
+Project is: in work.
 
 
 ## Contact

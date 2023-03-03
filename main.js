@@ -3,7 +3,7 @@ const app = document.querySelector("#app");
 const docTitle = document.title;
 
 window.addEventListener("blur", () => {
-  document.title = "Come back ♫";
+  document.title = "Comeback ♫";
 });
 window.addEventListener("focus", () => {
   document.title = docTitle;
@@ -77,7 +77,6 @@ function darkMode() {
   body.style.setProperty("--alert-color", "#ffd60a");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "dark");
-
   btnLight.classList.remove("active");
   btnDark.classList.add("active");
 }
@@ -95,9 +94,63 @@ logo.classList.add("logo");
 logo.innerText = "akai";
 container.appendChild(logo);
 
+const topWrapper = document.createElement("div");
+topWrapper.classList.add("top-wrapper");
+container.appendChild(topWrapper);
+
 const display = document.createElement("div");
 display.classList.add("display");
-container.appendChild(display);
+topWrapper.appendChild(display);
+
+const historyButtonsWrapper = document.createElement("div");
+historyButtonsWrapper.classList.add("history-buttons-wrapper");
+
+const historyUndo = document.createElement("button");
+historyUndo.classList.add("history-button");
+
+const historyUndoIcon = document.createElement("i");
+historyUndoIcon.classList.add("fa-solid");
+historyUndoIcon.classList.add("fa-rotate-left");
+historyUndo.appendChild(historyUndoIcon);
+
+const historyUndoText = document.createElement("span");
+historyUndoText.innerText = "Undo";
+historyUndoText.classList.add("history-undo-text");
+historyUndo.appendChild(historyUndoText);
+
+historyButtonsWrapper.appendChild(historyUndo);
+
+const historyClearAll = document.createElement("button");
+historyClearAll.classList.add("history-button");
+
+const historyClearAllIcon = document.createElement("i");
+historyClearAllIcon.classList.add("fa-solid");
+historyClearAllIcon.classList.add("fa-xmark");
+historyClearAll.appendChild(historyClearAllIcon);
+
+const historyClearAllText = document.createElement("span");
+historyClearAllText.innerText = "clear all";
+historyClearAllText.classList.add("history-undo-text");
+historyClearAll.appendChild(historyClearAllText);
+
+historyButtonsWrapper.appendChild(historyClearAll);
+
+topWrapper.appendChild(historyButtonsWrapper);
+
+let save = [];
+
+let localSave = localStorage.getItem("pad");
+let newLocalSave = JSON.parse(localSave);
+
+if (newLocalSave !== null) {
+  newLocalSave.forEach((element) => {
+    const localHistory = document.createElement("img");
+    localHistory.classList.add("history");
+    localHistory.src = `./img/${element}.png`;
+    display.appendChild(localHistory);
+    save.push(`${element}`);
+  });
+}
 
 const pads = [
   { name: "clap", letter: "W" },
@@ -139,6 +192,8 @@ pads.forEach((pad) => {
     history.classList.add("history");
     history.src = `./img/${pad.name}.png`;
     display.appendChild(history);
+    save.push(`${pad.name}`);
+    localStorage.setItem("pad", JSON.stringify(save));
     audio.play();
   });
 });
@@ -166,6 +221,8 @@ document.addEventListener("keydown", (e) => {
     history.src = `./img/${padValue}.png`;
     display.appendChild(history);
     keyboardAudio.src = `./samples/${padValue}.wav`;
+    save.push(`${padValue}`);
+    localStorage.setItem("pad", JSON.stringify(save));
     keyboardAudio.play();
   }
 
@@ -197,7 +254,61 @@ document.addEventListener("keydown", (e) => {
     case e.code === "KeyL":
       pushKey("tink");
       break;
+    case e.code === "Backspace":
+      undo();
+      historyUndo.animate(
+        [
+          { backgroundColor: "var(--alert-color)" },
+          { backgroundColor: "#fffffc" },
+        ],
+        {
+          duration: 300,
+        }
+      );
+      break;
+    case e.code === "Delete":
+      clearAll();
+      historyClearAll.animate(
+        [
+          { backgroundColor: "var(--alert-color)" },
+          { backgroundColor: "#fffffc" },
+        ],
+        {
+          duration: 300,
+        }
+      );
+      break;
   }
 });
+
+function undo() {
+  const lastChild = document.querySelectorAll(".history");
+  const arrLastChild = Array.from(lastChild);
+  arrLastChild.pop();
+  save.pop();
+  localStorage.setItem("pad", JSON.stringify(save));
+  while (display.hasChildNodes()) {
+    display.removeChild(display.firstChild);
+  }
+  arrLastChild.forEach((element) => {
+    const currentHistory = document.createElement("img");
+    currentHistory.setAttribute("src", `${element.currentSrc}`);
+    currentHistory.classList.add("history");
+    display.appendChild(currentHistory);
+  });
+}
+historyUndo.addEventListener("click", undo);
+
+function clearAll() {
+  const allHistory = document.querySelectorAll(".history");
+  let arrAllHistory = Array.from(allHistory);
+  arrAllHistory = [];
+  save = [];
+  localStorage.setItem("pad", JSON.stringify(save));
+  while (display.hasChildNodes()) {
+    display.removeChild(display.firstChild);
+  }
+}
+historyClearAll.addEventListener("click", clearAll);
 
 app.appendChild(container);
