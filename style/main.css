@@ -156,13 +156,15 @@ body {
   height: 50px;
   border-radius: 10px;
   margin: 0 0 0.5rem 0px;
-  transition: all 0.3s ease-in-out;
+  transition: all .3s ease;
 }
 
 .container .top-wrapper .history-buttons-wrapper .history-button:hover {
   cursor: pointer;
-  background-color: var(--active);
-  color: var(--alert-color);
+}
+
+.container .top-wrapper .history-buttons-wrapper .history-button:active {
+  background-color: #fffffc;
 }
 
 .container .top-wrapper .history-buttons-wrapper .history-button .history-undo-text {
@@ -222,6 +224,10 @@ body {
     grid-column-start: auto;
     grid-column-end: auto;
   }
+}
+
+.window-alert {
+  background-color: var(--alert-color);
 }
 
 @media screen and (min-width: 1000px) {

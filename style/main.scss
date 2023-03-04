@@ -135,11 +135,12 @@ body {
         height: 50px;
         border-radius: 10px;
         margin: 0 0 0.5rem 0px;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease;
         &:hover {
           cursor: pointer;
-          background-color: var(--active);
-          color: var(--alert-color);
+        }
+        &:active{
+          background-color: #fffffc;
         }
         .history-undo-text {
           display: none;
@@ -204,6 +205,9 @@ body {
     grid-column-start: auto;
     grid-column-end: auto;
   }
+}
+.window-alert{
+  background-color: var(--alert-color);
 }
 @media screen and (min-width: 1000px){
   .container{

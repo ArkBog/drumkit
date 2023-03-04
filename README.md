@@ -34,7 +34,8 @@ The user can play a sound by clicking a button or pressing a key on the keyboard
 - "K" - Tom,
 - "L" - Tink,
 - "Backspace" - Undo,
-- "Delete" - Clear all.
+- "Delete" - Clear all,
+- "P" - Play.
 
 The top display shows a history of key presses. The application saves the history of plays. Application is responsive to 375px. The application has two modes - dark and light. The default is dark mode.
 ![Example screenshot](./screenshots/1.png)
@@ -351,7 +352,47 @@ function clearAll() {
 historyClearAll.addEventListener("click", clearAll);
 ```
 The clearAll() is similar to undo(). The difference is, that this function removes all elements from arrays.
-
+```
+function playHistory() {
+  if (save.length > 0) {
+    let audio = document.createElement("audio");
+    audio.setAttribute("src", `./samples/${save[0]}.wav`);
+    let pad = document.getElementById(`${save[0]}`);
+    pad.animate(
+      [
+        { border: "solid 1px var(--border)" },
+        { border: "solid 5px var(--active)" },
+      ],
+      {
+        duration: 300,
+      }
+    );
+    audio.play();
+    let index = 1;
+    audio.addEventListener("ended", () => {
+      if (index < save.length) {
+        audio.setAttribute("src", `./samples/${save[index]}.wav`);
+        audio.play();
+        let pad = document.getElementById(`${save[index]}`);
+        pad.animate(
+          [
+            { border: "solid 1px var(--border)" },
+            { border: "solid 5px var(--active)" },
+          ],
+          {
+            duration: 300,
+          }
+        );
+        index++;
+      }
+    });
+  } else {
+    alert("You should play something first");
+  }
+}
+playButton.addEventListener("click", playHistory);
+```
+In this block of code, the history of sounds is played after pressing the "play" button. First, the if loop checks that the array "save" is greater than 0. If the condition is true, the code is executed, otherwise the alert is displayed. At the start, the code creates an audio element with source = save[0], play audio and animates an associated button. The next block of code is an event listener with a callback function. The event is "ended", because function need to be executed after the first sound (save[0]) is finished. In the callback function, get an if loop. The condition is "index < save.length" because the function needs to iterate through the elements and will be executed for all elements, one by one. The function starts at 1, because the first sound (save[0]) has already been played.
 ## Project Status
 Project is: in work.
 

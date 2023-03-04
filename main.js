@@ -105,8 +105,23 @@ topWrapper.appendChild(display);
 const historyButtonsWrapper = document.createElement("div");
 historyButtonsWrapper.classList.add("history-buttons-wrapper");
 
+const playButton = document.createElement("button");
+playButton.classList.add("history-button");
+
+const playButtonIcon = document.createElement("i");
+playButtonIcon.classList.add("fa-solid");
+playButtonIcon.classList.add("fa-play");
+playButton.appendChild(playButtonIcon);
+
 const historyUndo = document.createElement("button");
 historyUndo.classList.add("history-button");
+
+const playButtonText = document.createElement("span");
+playButtonText.innerText = "Play";
+playButtonText.classList.add("history-undo-text");
+playButton.appendChild(playButtonText);
+
+historyButtonsWrapper.appendChild(playButton);
 
 const historyUndoIcon = document.createElement("i");
 historyUndoIcon.classList.add("fa-solid");
@@ -278,6 +293,18 @@ document.addEventListener("keydown", (e) => {
         }
       );
       break;
+    case e.code === "KeyP":
+      playHistory();
+      playButton.animate(
+        [
+          { backgroundColor: "var(--alert-color)" },
+          { backgroundColor: "#fffffc" },
+        ],
+        {
+          duration: 300,
+        }
+      );
+      break;
   }
 });
 
@@ -310,5 +337,44 @@ function clearAll() {
   }
 }
 historyClearAll.addEventListener("click", clearAll);
+
+function playHistory() {
+  if (save.length > 0) {
+    let audio = document.createElement("audio");
+    audio.setAttribute("src", `./samples/${save[0]}.wav`);
+    let pad = document.getElementById(`${save[0]}`);
+    pad.animate(
+      [
+        { border: "solid 1px var(--border)" },
+        { border: "solid 5px var(--active)" },
+      ],
+      {
+        duration: 300,
+      }
+    );
+    audio.play();
+    let index = 1;
+    audio.addEventListener("ended", () => {
+      if (index < save.length) {
+        audio.setAttribute("src", `./samples/${save[index]}.wav`);
+        audio.play();
+        let pad = document.getElementById(`${save[index]}`);
+        pad.animate(
+          [
+            { border: "solid 1px var(--border)" },
+            { border: "solid 5px var(--active)" },
+          ],
+          {
+            duration: 300,
+          }
+        );
+        index++;
+      }
+    });
+  } else {
+    alert("You should play something first");
+  }
+}
+playButton.addEventListener("click", playHistory);
 
 app.appendChild(container);
