@@ -72,18 +72,14 @@ body {
 .container .switch {
   margin-left: 20%;
   justify-self: start;
-  position: relative;
-  display: inline-block;
   width: 100px;
   height: 34px;
-  border-radius: 1rem;
-  cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
 }
 
-.container .switch input {
+.container .switch button {
   all: unset;
 }
 
@@ -93,6 +89,8 @@ body {
   height: 24px;
   margin: auto;
   text-align: center;
+  color: var(--text-color);
+  cursor: pointer;
 }
 
 .container .active {

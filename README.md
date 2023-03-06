@@ -87,30 +87,31 @@ alertClose.addEventListener("click", closeAlert);
 In these lines there is a function to close an alert and a listener function that runs after clicking an "X".
 
 ```
-const buttonModeSwitch = document.createElement("label");
-buttonModeSwitch.classList.add("switch");
+const buttonMode = document.createElement("div");
+buttonMode.classList.add("switch");
 
-const btnDark = document.createElement("i");
-const btnLight = document.createElement("i");
-btnDark.classList.add("fa-solid");
-btnDark.classList.add("fa-moon");
-btnLight.classList.add("fa-solid");
-btnLight.classList.add("fa-sun");
-buttonModeSwitch.appendChild(btnDark);
-buttonModeSwitch.appendChild(btnLight);
+const btnDark = document.createElement("button");
+const iconDark = document.createElement("i");
+iconDark.classList.add("fa-solid");
+iconDark.classList.add("fa-moon");
+btnDark.appendChild(iconDark);
 
-const buttonMode = document.createElement("input");
-buttonMode.setAttribute("type", "checkbox");
+const btnLight = document.createElement("button");
+const iconLight = document.createElement("i");
+iconLight.classList.add("fa-solid");
+iconLight.classList.add("fa-sun");
+btnLight.appendChild(iconLight);
 
-buttonModeSwitch.appendChild(buttonMode);
-container.appendChild(buttonModeSwitch);
+buttonMode.appendChild(btnDark);
+buttonMode.appendChild(btnLight);
+
+container.appendChild(buttonMode);
 ```
-In this block of code are created the button to toggle a display mode. This button has a label and checkbox. The "i" elements have a classes from Fontawesome.
+In this block of code are creates the buttons to toggle a display mode. The "i" elements have a classes from Fontawesome.
 
 ```
 if (localStorage.getItem("mode") === "light") {
   lightMode();
-  buttonModeSwitch.querySelector("input").checked = true;
 } else {
   darkMode();
 }
@@ -123,8 +124,8 @@ function lightMode() {
   body.style.setProperty("--alert-color", "#212529");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "light");
-  btnDark.classList.remove("active");
-  btnLight.classList.add("active");
+  iconDark.classList.remove("active");
+  iconLight.classList.add("active");
 }
 function darkMode() {
   let body = document.querySelector(":root");
@@ -134,20 +135,14 @@ function darkMode() {
   body.style.setProperty("--alert-color", "#ffd60a");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "dark");
-  btnLight.classList.remove("active");
-  btnDark.classList.add("active");
+  iconLight.classList.remove("active");
+  iconDark.classList.add("active");
 }
 
-buttonMode.addEventListener("change", () => {
-  if (buttonMode.checked) {
-    lightMode();
-  } else {
-    darkMode();
-  }
-});
-
+btnLight.addEventListener("click", lightMode);
+btnDark.addEventListener("click", darkMode);
 ```
-This block of code are creates functions for dark and light mode. First, the function gets a local storage and runs a right mode, also setting a checkbox to correct status. Next functions gets a :root and change colours as appropriate. Functions also sets a right preferences in local storage and changing display of buttons. In the next steps, a listener was added that reacts to a checkbox status change.
+This block of code are creates functions for dark and light mode. First, the function gets a local storage and runs a right mode. Next functions gets a :root and change colours as appropriate. Functions also sets a right preferences in local storage and changing display of buttons. In the next steps, a listeners were added.
 
 ```
 const pads = [

@@ -33,27 +33,28 @@ function closeAlert() {
 
 alertClose.addEventListener("click", closeAlert);
 
-const buttonModeSwitch = document.createElement("label");
-buttonModeSwitch.classList.add("switch");
+const buttonMode = document.createElement("div");
+buttonMode.classList.add("switch");
 
-const btnDark = document.createElement("i");
-const btnLight = document.createElement("i");
-btnDark.classList.add("fa-solid");
-btnDark.classList.add("fa-moon");
-btnLight.classList.add("fa-solid");
-btnLight.classList.add("fa-sun");
-buttonModeSwitch.appendChild(btnDark);
-buttonModeSwitch.appendChild(btnLight);
+const btnDark = document.createElement("button");
+const iconDark = document.createElement("i");
+iconDark.classList.add("fa-solid");
+iconDark.classList.add("fa-moon");
+btnDark.appendChild(iconDark);
 
-const buttonMode = document.createElement("input");
-buttonMode.setAttribute("type", "checkbox");
+const btnLight = document.createElement("button");
+const iconLight = document.createElement("i");
+iconLight.classList.add("fa-solid");
+iconLight.classList.add("fa-sun");
+btnLight.appendChild(iconLight);
 
-buttonModeSwitch.appendChild(buttonMode);
-container.appendChild(buttonModeSwitch);
+buttonMode.appendChild(btnDark);
+buttonMode.appendChild(btnLight);
+
+container.appendChild(buttonMode);
 
 if (localStorage.getItem("mode") === "light") {
   lightMode();
-  buttonModeSwitch.querySelector("input").checked = true;
 } else {
   darkMode();
 }
@@ -66,8 +67,8 @@ function lightMode() {
   body.style.setProperty("--alert-color", "#212529");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "light");
-  btnDark.classList.remove("active");
-  btnLight.classList.add("active");
+  iconDark.classList.remove("active");
+  iconLight.classList.add("active");
 }
 function darkMode() {
   let body = document.querySelector(":root");
@@ -77,17 +78,12 @@ function darkMode() {
   body.style.setProperty("--alert-color", "#ffd60a");
   body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 500 });
   localStorage.setItem("mode", "dark");
-  btnLight.classList.remove("active");
-  btnDark.classList.add("active");
+  iconLight.classList.remove("active");
+  iconDark.classList.add("active");
 }
 
-buttonMode.addEventListener("change", () => {
-  if (buttonMode.checked) {
-    lightMode();
-  } else {
-    darkMode();
-  }
-});
+btnLight.addEventListener("click", lightMode);
+btnDark.addEventListener("click", darkMode);
 
 const logo = document.createElement("div");
 logo.classList.add("logo");

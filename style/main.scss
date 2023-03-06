@@ -64,24 +64,22 @@ body {
   .switch {
     margin-left: 20%;
     justify-self: start;
-    position: relative;
-    display: inline-block;
     width: 100px;
     height: 34px;
-    border-radius: 1rem;
-    cursor: pointer;
-    input {
-      all: unset;
-    }
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
+    button{
+      all: unset
+    }
     i {
       font-size: 1.2rem;
       width: 24px;
       height: 24px;
       margin: auto;
       text-align: center;
+      color: var(--text-color);
+      cursor: pointer;
     }
   }
   .active {
