@@ -1,0 +1,21 @@
+.alert {
+    width: 100%;
+    background-color: var(--alert-color);
+    color: var(--main-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem;
+    .alert-text {
+      font-size: 1rem;
+      text-align: justify;
+      padding: 1rem;
+      letter-spacing: 0.1rem;
+    }
+    .alert-close {
+      font-size: 3rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  

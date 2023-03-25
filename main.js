@@ -3,7 +3,7 @@ const app = document.querySelector("#app");
 const docTitle = document.title;
 
 window.addEventListener("blur", () => {
-  document.title = "Comeback ♫";
+  document.title = "Come back ♫";
 });
 window.addEventListener("focus", () => {
   document.title = docTitle;
@@ -87,7 +87,19 @@ btnDark.addEventListener("click", darkMode);
 
 const logo = document.createElement("div");
 logo.classList.add("logo");
-logo.innerText = "akai";
+
+const logoText = document.createElement("span");
+logoText.classList.add("logo-text");
+logoText.innerText = "MPC";
+
+const createdBy = document.createElement("a");
+createdBy.setAttribute("href", "https://github.com/ArkBog");
+createdBy.classList.add("created-by");
+createdBy.innerText = "Created by ArkBog";
+
+logo.appendChild(logoText);
+logo.appendChild(createdBy);
+
 container.appendChild(logo);
 
 const topWrapper = document.createElement("div");

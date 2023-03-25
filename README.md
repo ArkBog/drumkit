@@ -38,7 +38,11 @@ The user can play a sound by clicking a button or pressing a key on the keyboard
 - "P" - Play.
 
 The top display shows a history of key presses. The application saves the history of plays. Application is responsive to 375px. The application has two modes - dark and light. The default is dark mode.
+
+## Screenshots
 ![Example screenshot](./screenshots/1.png)
+![Example screenshot](./screenshots/2.png)
+![Example screenshot](./screenshots/3.png)
 
 
 ## Setup

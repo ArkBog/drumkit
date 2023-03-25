@@ -1,0 +1,9 @@
+@keyframes push {
+    from {
+      border: solid 1px var(--border);
+    }
+    to {
+      border: solid 5px var(--active);
+      opacity: 1;
+    }
+  }
